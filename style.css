@@ -1,0 +1,1158 @@
+:root {
+  /* Paleta de Alto Contraste (Figura-Fundo) */
+  --bg-paper: #f6f5f0;
+  --bg-tinted: #eceae2;
+  --bg-surface: #ffffff;
+  --bg-ink: #0d0f12;
+  --bg-ink-elevated: #16191e;
+
+  --text-ink: #0d0f12;
+  --text-secondary: #3f444c;
+  --text-muted: #686e77;
+  --text-on-dark: #f6f5f0;
+  --text-on-dark-muted: #9ca3af;
+
+  /* Cor focal extraída diretamente da arte "O Mundo de Richard" */
+  --richard-cyan: #00b2ff;
+  --accent-blue: #0077b6;
+  --status-ok: #0f766e;
+  --status-err: #b91c1c;
+
+  /* Linhas de Grade e Região Comum */
+  --rule-strong: #0d0f12;
+  --rule-subtle: #d0cfc7;
+  --rule-dark: #2a2f37;
+
+  /* Tipografia */
+  --font-display: 'Archivo', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-paper);
+  color: var(--text-ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   SISTEMA DE GRADE E ALINHAMENTO (CRAP: Alignment & Continuity)
+   ========================================================================== */
+.grid-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-block {
+  padding: 5.5rem 0;
+  border-bottom: 1.5px solid var(--rule-strong);
+}
+
+.section-tinted {
+  background-color: var(--bg-tinted);
+}
+
+.section-dark {
+  background-color: var(--bg-ink);
+  color: var(--text-on-dark);
+}
+
+/* Grade Assimétrica 4 colunas (índice/título) + 8 colunas (conteúdo) */
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.section-sidebar {
+  grid-column: 1 / 5;
+  position: sticky;
+  top: 5.5rem;
+  padding-right: 1.5rem;
+}
+
+.section-body {
+  grid-column: 5 / 13;
+  border-left: 1px solid var(--rule-subtle);
+  padding-left: 2.5rem;
+}
+
+.section-dark .section-body {
+  border-left-color: var(--rule-dark);
+}
+
+/* ==========================================================================
+   REPETIÇÃO TIPOGRÁFICA E PROXIMIDADE (CRAP: Repetition, Contrast, Proximity)
+   ========================================================================== */
+.section-index,
+.mono-label,
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.section-index {
+  color: var(--accent-blue);
+  margin-bottom: 0.5rem; /* Proximidade forte com o título da seção */
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid var(--accent-blue);
+}
+
+.index-light {
+  color: var(--richard-cyan);
+  border-bottom-color: var(--richard-cyan);
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 2.4vw, 2.15rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.section-summary {
+  font-size: 0.96rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.text-light-muted {
+  color: var(--text-on-dark-muted);
+}
+
+/* ==========================================================================
+   CABEÇALHO (Alinhamento rigoroso e Semelhança)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--bg-paper);
+  border-bottom: 1.5px solid var(--rule-strong);
+}
+
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-ink);
+}
+
+.brand-code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: var(--bg-ink);
+  color: var(--bg-paper);
+  padding: 0.2rem 0.45rem;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.site-nav a:not(.nav-cta) {
+  text-decoration: none;
+  color: var(--text-ink);
+  font-size: 0.88rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.site-nav a:not(.nav-cta):hover {
+  border-bottom-color: var(--text-ink);
+}
+
+.nav-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.nav-cta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--bg-paper);
+  background-color: var(--bg-ink);
+  padding: 0.55rem 0.95rem;
+  border: 1.5px solid var(--bg-ink);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-cta:hover {
+  background-color: var(--richard-cyan);
+  color: var(--bg-ink);
+}
+
+.menu-toggle {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.45rem 0.8rem;
+  background: transparent;
+  border: 1.5px solid var(--rule-strong);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   BOTÕES (Semelhança e Contraste Sem Sombras Artificiais)
+   ========================================================================== */
+.btn-solid,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.85rem 1.35rem;
+  border: 1.5px solid var(--rule-strong);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-solid {
+  background-color: var(--bg-ink);
+  color: var(--bg-paper);
+}
+
+.btn-solid:hover {
+  background-color: var(--richard-cyan);
+  color: var(--bg-ink);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-ink);
+}
+
+.btn-ghost:hover {
+  background-color: var(--bg-ink);
+  color: var(--bg-paper);
+}
+
+.btn-compact {
+  margin-top: 1.25rem;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.76rem;
+}
+
+/* ==========================================================================
+   HERO SECTION (Ponto Focal + Figura-Fundo + Proximidade)
+   ========================================================================== */
+.hero-section {
+  padding: 4.5rem 0 5rem;
+  border-bottom: 1.5px solid var(--rule-strong);
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+.hero-left {
+  grid-column: 1 / 8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kicker-line {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  color: var(--accent-blue);
+}
+
+.meta-separator {
+  color: var(--rule-subtle);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4.2vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  max-width: 18ch;
+}
+
+.hero-lead {
+  font-size: 1.12rem;
+  color: var(--text-secondary);
+  max-width: 58ch;
+  margin-bottom: 2.25rem;
+}
+
+.action-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-bottom: 3rem;
+}
+
+/* Dados em Grade Fechada (Gestalt: Região Comum & Semelhança) */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1.5px solid var(--rule-strong);
+  padding-top: 1.25rem;
+  gap: 1.5rem;
+}
+
+.stat-cell {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.2rem; /* Proximidade imediata entre rótulo e valor */
+}
+
+.stat-cell dt {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.stat-cell dd {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text-ink);
+}
+
+/* Quadro do Personagem (Gestalt: Figura-Fundo) */
+.hero-right {
+  grid-column: 8 / 13;
+}
+
+.poster-frame {
+  border: 1.5px solid var(--rule-strong);
+  background-color: var(--bg-surface);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.poster-meta {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  border-bottom: 1.5px solid var(--rule-strong);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.poster-canvas {
+  background-color: var(--richard-cyan);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.poster-img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  image-rendering: pixelated;
+  display: block;
+}
+
+.poster-caption {
+  padding: 1rem 1.15rem;
+  border-top: 1.5px solid var(--rule-strong);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.poster-caption strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+}
+
+.poster-caption span {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.mono-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem !important;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--rule-strong);
+  color: var(--text-ink) !important;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   01 / DEFINIÇÃO (Proximidade, Alinhamento e Hierarquia)
+   ========================================================================== */
+.definition-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.definition-block {
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--rule-strong);
+  padding: 2.25rem;
+}
+
+.def-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--rule-subtle);
+}
+
+.def-num {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--accent-blue);
+}
+
+.def-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.def-text {
+  font-size: 1.06rem;
+  color: var(--text-ink);
+  margin-bottom: 1.25rem;
+}
+
+.def-note {
+  padding: 0.9rem 1.1rem;
+  background-color: var(--bg-tinted);
+  border-left: 3px solid var(--rule-strong);
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.sub-points {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule-subtle);
+}
+
+.sub-point strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.sub-point p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   02 / EVIDÊNCIAS (Região Comum, Semelhança e Continuidade)
+   ========================================================================== */
+.data-explorer {
+  border: 1.5px solid var(--rule-strong);
+  background-color: var(--bg-surface);
+}
+
+.explorer-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1.5px solid var(--rule-strong);
+}
+
+.explorer-tab {
+  appearance: none;
+  background: var(--bg-paper);
+  border: none;
+  border-right: 1px solid var(--rule-strong);
+  padding: 1rem 1.1rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: background-color 0.15s ease;
+}
+
+.explorer-tab:last-child {
+  border-right: none;
+}
+
+.explorer-tab:hover {
+  background-color: var(--bg-tinted);
+}
+
+.explorer-tab.active {
+  background-color: var(--bg-ink);
+  color: var(--bg-paper);
+}
+
+.tab-code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-blue);
+}
+
+.explorer-tab.active .tab-code {
+  color: var(--richard-cyan);
+}
+
+.tab-label {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.explorer-stage {
+  padding: 2.25rem;
+}
+
+.explorer-pane {
+  display: none;
+}
+
+.explorer-pane.active {
+  display: block;
+}
+
+.pane-header {
+  margin-bottom: 1rem;
+}
+
+.pane-header .mono-label {
+  color: var(--accent-blue);
+  margin-bottom: 0.35rem;
+}
+
+.pane-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.pane-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 65ch;
+}
+
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1.5px solid var(--rule-strong);
+  padding-top: 1.5rem;
+  gap: 1.5rem;
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.metric-val {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-ink);
+}
+
+.metric-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   03 / NOSSA PROPOSTA (Alto Contraste Figura-Fundo)
+   ========================================================================== */
+.proposal-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.reference-bar {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--bg-ink);
+  background-color: var(--richard-cyan);
+  padding: 0.35rem 0.75rem;
+  display: inline-block;
+  margin-bottom: 1.25rem;
+}
+
+.proposal-copy h3 {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  margin-bottom: 1rem;
+}
+
+.proposal-copy p {
+  color: var(--text-on-dark-muted);
+  margin-bottom: 1rem;
+  font-size: 0.98rem;
+}
+
+.proposal-copy strong {
+  color: var(--text-on-dark);
+}
+
+.criteria-list {
+  margin-top: 2rem;
+  border-top: 1px solid var(--rule-dark);
+  display: flex;
+  flex-direction: column;
+}
+
+.criteria-item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule-dark);
+}
+
+.criteria-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--richard-cyan);
+  padding-top: 0.15rem;
+}
+
+.criteria-item strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.96rem;
+  margin-bottom: 0.2rem;
+}
+
+.criteria-item p {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+/* Monitor de Roteiro / Vinheta */
+.tv-monitor {
+  border: 1.5px solid var(--text-on-dark);
+  background-color: var(--bg-ink-elevated);
+}
+
+.monitor-top {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--rule-dark);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-on-dark-muted);
+}
+
+.monitor-screen {
+  background-color: var(--richard-cyan);
+  padding: 1.75rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.monitor-img {
+  width: 180px;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.monitor-caption {
+  width: 100%;
+  background-color: var(--bg-ink);
+  color: var(--text-on-dark);
+  padding: 0.85rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  text-align: left;
+  border-left: 3px solid var(--text-on-dark);
+}
+
+.monitor-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1.5px solid var(--text-on-dark);
+}
+
+.monitor-btn {
+  appearance: none;
+  background: var(--bg-ink);
+  color: var(--text-on-dark-muted);
+  border: none;
+  border-right: 1px solid var(--rule-dark);
+  padding: 0.75rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.monitor-btn:last-child {
+  border-right: none;
+}
+
+.monitor-btn.active,
+.monitor-btn:hover {
+  background-color: var(--text-on-dark);
+  color: var(--bg-ink);
+}
+
+/* ==========================================================================
+   04 / O DESENHO & STORYBOARD (Fechamento, Alinhamento e Região Comum)
+   ========================================================================== */
+.character-feature {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  border: 1.5px solid var(--rule-strong);
+  background-color: var(--bg-surface);
+  margin-bottom: 2rem;
+}
+
+.char-visual {
+  background-color: var(--richard-cyan);
+  border-right: 1.5px solid var(--rule-strong);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.char-visual img {
+  width: 100%;
+  max-width: 170px;
+  image-rendering: pixelated;
+}
+
+.char-details {
+  padding: 2rem;
+}
+
+.char-details .mono-label {
+  color: var(--accent-blue);
+  margin-bottom: 0.35rem;
+}
+
+.char-details h3 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.char-details p {
+  font-size: 0.96rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.char-details code {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--bg-tinted);
+  padding: 0.1rem 0.35rem;
+}
+
+.storyboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1.5px solid var(--rule-strong);
+  background-color: var(--bg-surface);
+  margin-bottom: 2rem;
+}
+
+.storyboard-cell {
+  padding: 1.6rem;
+  border-right: 1px solid var(--rule-strong);
+}
+
+.storyboard-cell:last-child {
+  border-right: none;
+}
+
+.cell-index {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  display: block;
+  margin-bottom: 0.45rem;
+}
+
+.storyboard-cell h4 {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  margin-bottom: 0.5rem;
+}
+
+.storyboard-cell p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Banner Canva Estrutural */
+.canva-banner {
+  border: 1.5px solid var(--rule-strong);
+  background-color: var(--bg-tinted);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.canva-info .mono-label {
+  color: var(--accent-blue);
+  margin-bottom: 0.3rem;
+}
+
+.canva-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.canva-info p {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+}
+
+.canva-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   05 / QUIZ (Semelhança e Feedback Estrutural)
+   ========================================================================== */
+.quiz-panel {
+  border: 1.5px solid var(--rule-strong);
+  background-color: var(--bg-surface);
+  padding: 2.25rem;
+}
+
+.quiz-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule-subtle);
+}
+
+.quiz-progress-track {
+  flex: 1;
+  max-width: 240px;
+  height: 6px;
+  background-color: var(--bg-tinted);
+  border: 1px solid var(--rule-strong);
+}
+
+.quiz-progress-bar {
+  height: 100%;
+  background-color: var(--bg-ink);
+  transition: width 0.25s ease;
+}
+
+.quiz-prompt {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.quiz-option-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.95rem 1.15rem;
+  background-color: var(--bg-paper);
+  border: 1.5px solid var(--rule-strong);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-ink);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.quiz-option-btn:hover:not(:disabled) {
+  background-color: var(--bg-tinted);
+}
+
+.quiz-option-btn.correct {
+  background-color: #d1fae5;
+  border-color: var(--status-ok);
+  color: #064e3b;
+  font-weight: 600;
+}
+
+.quiz-option-btn.wrong {
+  background-color: #fee2e2;
+  border-color: var(--status-err);
+  color: #7f1d1d;
+}
+
+.quiz-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.quiz-explanation {
+  font-size: 0.94rem;
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+/* ==========================================================================
+   06 / EQUIPE (Continuidade e Alinhamento Tabular)
+   ========================================================================== */
+.credits-table {
+  border-top: 1.5px solid var(--rule-strong);
+}
+
+.credit-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 1.2fr;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--rule-subtle);
+}
+
+.credit-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+.credit-row strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.credit-row span:not(.credit-num) {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.credit-row [contenteditable="true"] {
+  outline: 1.5px dashed var(--accent-blue);
+  background-color: var(--bg-surface);
+  padding: 0.2rem 0.4rem;
+}
+
+/* ==========================================================================
+   RODAPÉ
+   ========================================================================== */
+.site-footer {
+  background-color: var(--bg-ink);
+  color: var(--text-on-dark);
+  padding: 2.5rem 0;
+}
+
+.footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.footer-left strong {
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.footer-left span {
+  font-size: 0.84rem;
+  color: var(--text-on-dark-muted);
+}
+
+.footer-right {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-right a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-on-dark);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-dark);
+  padding-bottom: 0.15rem;
+}
+
+.footer-right a:hover {
+  color: var(--richard-cyan);
+  border-bottom-color: var(--richard-cyan);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 960px) {
+  .hero-left,
+  .hero-right,
+  .section-sidebar,
+  .section-body {
+    grid-column: 1 / -1;
+  }
+
+  .section-sidebar {
+    position: static;
+    padding-right: 0;
+  }
+
+  .section-body {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--rule-subtle);
+    padding-top: 2rem;
+  }
+
+  .proposal-grid,
+  .character-feature,
+  .storyboard-grid,
+  .explorer-nav,
+  .metrics-row,
+  .sub-points {
+    grid-template-columns: 1fr;
+  }
+
+  .char-visual {
+    border-right: none;
+    border-bottom: 1.5px solid var(--rule-strong);
+  }
+
+  .storyboard-cell,
+  .explorer-tab {
+    border-right: none;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+
+  .credit-row {
+    grid-template-columns: 36px 1fr;
+  }
+
+  .credit-row .editable-role {
+    grid-column: 2 / -1;
+  }
+
+  .menu-toggle {
+    display: inline-block;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-paper);
+    border-bottom: 1.5px solid var(--rule-strong);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+  }
+
+  .site-nav.open {
+    display: flex;
+  }
+}
