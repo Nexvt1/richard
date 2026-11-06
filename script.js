@@ -1,4 +1,3 @@
-// Voltar ao topo ao clicar em PV / 2026 ou qualquer link #topo
 document.querySelectorAll('a[href="#topo"]').forEach((topLink) => {
   topLink.addEventListener('click', (e) => {
     e.preventDefault();
@@ -6,7 +5,6 @@ document.querySelectorAll('a[href="#topo"]').forEach((topLink) => {
   });
 });
 
-// Menu Mobile
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navLinks = document.getElementById('navLinks');
 
@@ -22,7 +20,6 @@ if (mobileMenuBtn && navLinks) {
   });
 }
 
-// Explorador de Evidências (Seção 02)
 const explorerTabs = document.querySelectorAll('.explorer-tab');
 const explorerPanes = document.querySelectorAll('.explorer-pane');
 
@@ -45,7 +42,6 @@ explorerTabs.forEach((tab) => {
   });
 });
 
-// Monitor de Vinhetas de Intervalo (Seção 03)
 const monitorButtons = document.querySelectorAll('.monitor-btn');
 const tvSubtitle = document.getElementById('tvSubtitle');
 const vinhetaIndexLabel = document.getElementById('vinhetaIndexLabel');
@@ -67,7 +63,6 @@ monitorButtons.forEach((btn) => {
   });
 });
 
-// Copiar Link do Canva
 const copyCanvaLinkBtn = document.getElementById('copyCanvaLinkBtn');
 if (copyCanvaLinkBtn) {
   copyCanvaLinkBtn.addEventListener('click', async () => {
@@ -85,7 +80,93 @@ if (copyCanvaLinkBtn) {
   });
 }
 
-// Quiz de Fixação (Seção 05)
+const animationsCatalog = {
+  ep1: {
+    code: 'ARQUIVO: RICHARD_VINHETA_01.MP4',
+    kicker: 'VINHETA EDUCATIVA 01 / 03',
+    title: 'Animação 01 — O Ambiente Compartilhado',
+    desc: 'Richard está em sua rotina quando a fumaça de terceiros invade o espaço coletivo, demonstrando como ocorre a inalação involuntária.',
+    src: 'assets/animacao-01.mp4',
+    downloadName: 'O-Mundo-de-Richard-Animacao-01.mp4'
+  },
+  ep2: {
+    code: 'ARQUIVO: RICHARD_VINHETA_02.MP4',
+    kicker: 'VINHETA EDUCATIVA 02 / 03',
+    title: 'Animação 02 — Fumaça Sem Filtro',
+    desc: 'Demonstração visual de como a fumaça da ponta acesa se espalha diretamente pelo ambiente com alta concentração de toxinas.',
+    src: 'assets/animacao-02.mp4',
+    downloadName: 'O-Mundo-de-Richard-Animacao-02.mp4'
+  },
+  ep3: {
+    code: 'ARQUIVO: RICHARD_VINHETA_03.MP4',
+    kicker: 'VINHETA EDUCATIVA 03 / 03',
+    title: 'Animação 03 — Intervalo Consciente',
+    desc: 'Alerta inspirado nos intervalos clássicos da TV sobre o respeito a quem escolheu respirar ar limpo em locais abertos ou fechados.',
+    src: 'assets/animacao-03.mp4',
+    downloadName: 'O-Mundo-de-Richard-Animacao-03.mp4'
+  }
+};
+
+const animTabs = document.querySelectorAll('.anim-tab');
+const animStageCode = document.getElementById('animStageCode');
+const animVideoPlayer = document.getElementById('animVideoPlayer');
+const animVideoSource = document.getElementById('animVideoSource');
+const animPlaceholder = document.getElementById('animPlaceholder');
+const animPlaceholderTitle = document.getElementById('animPlaceholderTitle');
+const animPlaceholderHint = document.getElementById('animPlaceholderHint');
+const animActiveKicker = document.getElementById('animActiveKicker');
+const animActiveTitle = document.getElementById('animActiveTitle');
+const animActiveDesc = document.getElementById('animActiveDesc');
+const animDownloadPrimary = document.getElementById('animDownloadPrimary');
+
+function selectAnimation(animKey) {
+  const item = animationsCatalog[animKey];
+  if (!item) return;
+
+  animTabs.forEach((tab) => {
+    const isMatch = tab.getAttribute('data-anim') === animKey;
+    tab.classList.toggle('active', isMatch);
+    tab.setAttribute('aria-selected', String(isMatch));
+  });
+
+  if (animStageCode) animStageCode.textContent = item.code;
+  if (animActiveKicker) animActiveKicker.textContent = item.kicker;
+  if (animActiveTitle) animActiveTitle.textContent = item.title;
+  if (animActiveDesc) animActiveDesc.textContent = item.desc;
+  if (animPlaceholderTitle) animPlaceholderTitle.textContent = item.title;
+  if (animPlaceholderHint) {
+    animPlaceholderHint.innerHTML = `Coloque o arquivo <code>${item.src}</code> na pasta do projeto para visualizar no player.`;
+  }
+
+  if (animDownloadPrimary) {
+    animDownloadPrimary.href = item.src;
+    animDownloadPrimary.setAttribute('download', item.downloadName);
+  }
+
+  if (animVideoPlayer && animVideoSource) {
+    if (animPlaceholder) animPlaceholder.hidden = false;
+    animVideoSource.src = item.src;
+    animVideoPlayer.load();
+  }
+}
+
+if (animVideoPlayer) {
+  animVideoPlayer.addEventListener('loadeddata', () => {
+    if (animPlaceholder) animPlaceholder.hidden = true;
+  });
+
+  animVideoPlayer.addEventListener('error', () => {
+    if (animPlaceholder) animPlaceholder.hidden = false;
+  });
+}
+
+animTabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    const animKey = tab.getAttribute('data-anim');
+    selectAnimation(animKey);
+  });
+});
+
 const quizQuestions = [
   {
     question: 'O que caracteriza o Tabagismo Passivo?',
@@ -220,7 +301,6 @@ function showQuizSummary() {
 
 renderQuestion();
 
-// Edição da Ficha Técnica (Seção 06)
 const toggleEditTeamBtn = document.getElementById('toggleEditTeamBtn');
 const editableMembers = document.querySelectorAll('.editable-member, .editable-role');
 let isEditingTeam = false;

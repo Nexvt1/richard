@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body id="topo">
-  <!-- Cabeçalho Estrutural (Alinhamento + Repetição) -->
   <header class="site-header">
     <div class="grid-container header-bar">
       <a href="#topo" class="brand-lockup" id="scrollTopBrand">
@@ -28,8 +27,9 @@
         <a href="#mecanismo"><span class="nav-num">02</span> Dados</a>
         <a href="#proposta"><span class="nav-num">03</span> Proposta</a>
         <a href="#desenho"><span class="nav-num">04</span> O Desenho</a>
-        <a href="#quiz"><span class="nav-num">05</span> Quiz</a>
-        <a href="#equipe"><span class="nav-num">06</span> Equipe</a>
+        <a href="#animacoes"><span class="nav-num">05</span> Animações</a>
+        <a href="#quiz"><span class="nav-num">06</span> Quiz</a>
+        <a href="#equipe"><span class="nav-num">07</span> Equipe</a>
         <a href="https://canva.link/mxvk9bwclhakq3s" target="_blank" rel="noopener noreferrer" class="nav-cta">
           Apresentação Canva ↗
         </a>
@@ -38,7 +38,6 @@
   </header>
 
   <main>
-    <!-- HERO: Ponto Focal, Figura-Fundo e Alinhamento Estrito -->
     <section class="hero-section">
       <div class="grid-container hero-layout">
         <div class="hero-left">
@@ -63,7 +62,6 @@
             </a>
           </div>
 
-          <!-- Proximidade e Semelhança: Dados em linha editorial -->
           <dl class="hero-stats">
             <div class="stat-cell">
               <dt>Substâncias químicas</dt>
@@ -101,7 +99,6 @@
       </div>
     </section>
 
-    <!-- 01 / CONCEITO: O que é e Como Funciona (Alinhamento Assimétrico + Proximidade) -->
     <section class="section-block" id="conceito">
       <div class="grid-container section-grid">
         <div class="section-sidebar">
@@ -151,7 +148,6 @@
       </div>
     </section>
 
-    <!-- 02 / DADOS & EVIDÊNCIAS (Semelhança, Fechamento e Região Comum) -->
     <section class="section-block section-tinted" id="mecanismo">
       <div class="grid-container section-grid">
         <div class="section-sidebar">
@@ -285,7 +281,6 @@
       </div>
     </section>
 
-    <!-- 03 / NOSSA PROPOSTA (Alto Contraste Figura-Fundo) -->
     <section class="section-block section-dark" id="proposta">
       <div class="grid-container section-grid">
         <div class="section-sidebar">
@@ -335,7 +330,6 @@
               </div>
             </div>
 
-            <!-- Monitor de Vinheta (Ponto Focal no bloco escuro) -->
             <div class="tv-monitor">
               <div class="monitor-top">
                 <span>MONITOR DE ROTEIRO</span>
@@ -364,7 +358,6 @@
       </div>
     </section>
 
-    <!-- 04 / O DESENHO & MATERIAL CANVA -->
     <section class="section-block" id="desenho">
       <div class="grid-container section-grid">
         <div class="section-sidebar">
@@ -410,7 +403,6 @@
             </article>
           </div>
 
-          <!-- Bloco de Acesso ao Canva integrado com forte alinhamento e contraste -->
           <div class="canva-banner" id="canva">
             <div class="canva-info">
               <span class="mono-label">APRESENTAÇÃO OFICIAL</span>
@@ -430,11 +422,93 @@
       </div>
     </section>
 
-    <!-- 05 / QUIZ DE FIXAÇÃO -->
+    <section class="section-block section-dark" id="animacoes">
+      <div class="grid-container section-grid">
+        <div class="section-sidebar">
+          <span class="section-index index-light">05 / ANIMAÇÕES</span>
+          <h2 class="section-heading">Assistir e baixar as animações</h2>
+          <p class="section-summary text-light-muted">
+            Central de exibição das vinhetas animadas de <strong>O Mundo de Richard</strong>. Selecione uma animação abaixo para assistir no player ou baixar o arquivo original.
+          </p>
+        </div>
+
+        <div class="section-body">
+          <div class="anim-showcase" role="region" aria-label="Central de exibição e download de animações">
+            <div class="anim-tabs" role="tablist">
+              <button class="anim-tab active" data-anim="ep1" role="tab" aria-selected="true">
+                <span class="anim-tab-code">ANIMAÇÃO 01</span>
+                <span class="anim-tab-title">O Ambiente Compartilhado</span>
+              </button>
+              <button class="anim-tab" data-anim="ep2" role="tab" aria-selected="false">
+                <span class="anim-tab-code">ANIMAÇÃO 02</span>
+                <span class="anim-tab-title">Fumaça Sem Filtro</span>
+              </button>
+              <button class="anim-tab" data-anim="ep3" role="tab" aria-selected="false">
+                <span class="anim-tab-code">ANIMAÇÃO 03</span>
+                <span class="anim-tab-title">Intervalo Consciente</span>
+              </button>
+            </div>
+
+            <div class="anim-stage">
+              <div class="anim-stage-top">
+                <span id="animStageCode">ARQUIVO: RICHARD_VINHETA_01.MP4</span>
+                <span class="anim-badge" id="animStageFormat">MP4 • 1080P • INTERVALO EDUCATIVO</span>
+              </div>
+
+              <div class="anim-viewport" id="animViewport">
+                <video
+                  id="animVideoPlayer"
+                  class="anim-video"
+                  controls
+                  preload="metadata"
+                  poster="assets/logo-richard.png"
+                >
+                  <source id="animVideoSource" src="assets/animacao-01.mp4" type="video/mp4" />
+                  Seu navegador não suporta a reprodução de vídeo HTML5.
+                </video>
+
+                <div class="anim-placeholder" id="animPlaceholder">
+                  <img src="assets/logo-richard.png" alt="Prévia O Mundo de Richard" class="anim-placeholder-img" />
+                  <div class="anim-placeholder-overlay">
+                    <span class="mono-label">BASE DO PLAYER PRONTA</span>
+                    <strong id="animPlaceholderTitle">Animação 01 — O Ambiente Compartilhado</strong>
+                    <p id="animPlaceholderHint">
+                      Coloque o arquivo <code>assets/animacao-01.mp4</code> na pasta do projeto para visualizar no player.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="anim-details-bar">
+                <div class="anim-meta-text">
+                  <span class="mono-label" id="animActiveKicker">VINHETA EDUCATIVA 01 / 03</span>
+                  <h3 id="animActiveTitle">Animação 01 — O Ambiente Compartilhado</h3>
+                  <p id="animActiveDesc">
+                    Richard está em sua rotina quando a fumaça de terceiros invade o espaço coletivo, demonstrando como ocorre a inalação involuntária.
+                  </p>
+                </div>
+
+                <div class="anim-actions">
+                  <a
+                    href="assets/animacao-01.mp4"
+                    download="O-Mundo-de-Richard-Animacao-01.mp4"
+                    class="btn-solid btn-cyan"
+                    id="animDownloadPrimary"
+                  >
+                    Baixar animação (.MP4) ↓
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section-block section-tinted" id="quiz">
       <div class="grid-container section-grid">
         <div class="section-sidebar">
-          <span class="section-index">05 / VERIFICAÇÃO</span>
+          <span class="section-index">06 / VERIFICAÇÃO</span>
           <h2 class="section-heading">Teste rápido de conscientização</h2>
           <p class="section-summary">
             Quatro questões objetivas para fixar os principais conceitos apresentados no projeto.
@@ -462,11 +536,10 @@
       </div>
     </section>
 
-    <!-- 06 / EQUIPE -->
     <section class="section-block" id="equipe">
       <div class="grid-container section-grid">
         <div class="section-sidebar">
-          <span class="section-index">06 / CRÉDITOS</span>
+          <span class="section-index">07 / CRÉDITOS</span>
           <h2 class="section-heading">Ficha técnica e equipe</h2>
           <p class="section-summary">
             Integrantes responsáveis pelo desenvolvimento, animação, pesquisa e roteiro do projeto.
